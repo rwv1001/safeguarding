@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Multi-Tab Website with Iframes</title>
+  <style>
+    /* Tab styling */
+    .tab {
+      overflow: hidden;
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
+    }
+    .tab button {
+      background-color: inherit;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      transition: 0.3s;
+    }
+    .tab button:hover {
+      background-color: #ddd;
+    }
+    .tab button.active {
+      background-color: #ccc;
+    }
+    /* Iframe styling */
+    .tabcontent {
+      display: none;
+      padding: 6px 12px;
+      border: 1px solid #ccc;
+      border-top: none;
+      height: 80vh;
+    }
+    .tabcontent iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Tabs -->
+  <div class="tab">
+    <button class="tablink" onclick="openTab(event, 'Tab1')">Tab 1</button>
+    <button class="tablink" onclick="openTab(event, 'Tab2')">Tab 2</button>
+    <button class="tablink" onclick="openTab(event, 'Tab3')">Tab 3</button>
+    <button class="tablink" onclick="openTab(event, 'Tab4')">Tab 4</button>
+    <button class="tablink" onclick="openTab(event, 'Tab5')">Tab 5</button>
+  </div>
+
+  <!-- Tab Content (Iframes) -->
+  <div id="Tab1" class="tabcontent">
+    <iframe src="https://example.com"></iframe>
+  </div>
+  <div id="Tab2" class="tabcontent">
+    <iframe src="https://example.net"></iframe>
+  </div>
+  <div id="Tab3" class="tabcontent">
+    <iframe src="https://example.org"></iframe>
+  </div>
+  <div id="Tab4" class="tabcontent">
+    <iframe src="https://wikipedia.org"></iframe>
+  </div>
+  <div id="Tab5" class="tabcontent">
+    <iframe src="https://youtube.com"></iframe>
+  </div>
+
+  <script>
+    function openTab(evt, tabName) {
+      const tabContents = document.getElementsByClassName("tabcontent");
+      const tabLinks = document.getElementsByClassName("tablink");
+      
+      // Hide all tabs
+      for (let tab of tabContents) {
+        tab.style.display = "none";
+      }
+      
+      // Remove "active" class from all buttons
+      for (let link of tabLinks) {
+        link.className = link.className.replace(" active", "");
+      }
+      
+      // Show the selected tab and mark the button as active
+      document.getElementById(tabName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+
+    // Open the first tab by default
+    document.querySelector(".tablink").click();
+  </script>
+</body>
+</html>
